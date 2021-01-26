@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
+import sys
+from secret import username, password
+from templates import login_page, secret_page
 import json
 import os
 import cgi
 import cgitb
 cgitb.enable()
+
 
 # print('Content-Type: application/json')
 # print()
@@ -35,6 +39,7 @@ cgitb.enable()
 # """)
 
 print('Content-Type: text/html')
+print("Set-Cookie: is_logged_in=false")
 print()
 print("""
 <!doctype html>
@@ -42,30 +47,9 @@ print("""
 <html>
 <body>
 """)
-print("""
 
-    <h1> Welcome! </h1>
+print(login_page())
 
-    <form method="POST">
-        <label> <span>Username:</span> <input autofocus type="text" name="username"></label> <br>
-        <label> <span>Password:</span> <input type="password" name="password"></label>
-
-        <button type="submit"> Login! </button>
-    </form>
-
-""")
-
-# Getting form cgi values
-# From Nosklo https://stackoverflow.com/users/17160/nosklo
-# From StackOvefflow
-# From https://stackoverflow.com/a/464977
-form = cgi.FieldStorage()  # can handle POST too
-
-username = form.getvalue('user')
-password = form.getvalue('password')
-
-print(f"<h2> username={username}")
-print(f"<h2> password={password}")
 
 print("""
 </body>

@@ -19,11 +19,11 @@
 """
 Roll my own "template system".
 """
+from html import escape
 import cgi
 import cgitb
 cgitb.enable()
 
-from cgi import escape
 
 __all__ = ['login_page', 'secret_page', 'after_login_incorrect']
 
